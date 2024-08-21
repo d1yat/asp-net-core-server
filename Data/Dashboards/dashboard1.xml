@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard>
+  <Title Text="Analisis Penjualan" />
+  <DataSources>
+    <JsonDataSource Name="Categories" ConnectionName="jsonCategories" RootElement="Products" ComponentName="jsonDataSource1" />
+    <JsonDataSource Name="Support" ConnectionName="jsonSupport" RootElement="Employee" ComponentName="jsonDataSource2" />
+    <JsonDataSource Name="Customers" ConnectionName="jsonCustomers" RootElement="Customers" ComponentName="jsonDataSource3" />
+  </DataSources>
+  <Items>
+    <Grid ComponentName="gridDashboardItem1" Name="Customers" ParentContainer="dashboardTabPage2" DataSource="jsonDataSource3">
+      <DataItems>
+        <Dimension DataMember="CompanyName" DefaultId="DataItem0" />
+        <Dimension DataMember="Country" DefaultId="DataItem1" />
+        <Dimension DataMember="Phone" DefaultId="DataItem2" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem1" />
+        </GridDimensionColumn>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions />
+      <ColumnFilterOptions />
+    </Grid>
+    <Card ComponentName="cardDashboardItem1" Name="Categories" ParentContainer="dashboardTabPage1" DataSource="jsonDataSource1">
+      <DataItems>
+        <Dimension DataMember="Supplier" DefaultId="DataItem0" />
+        <Dimension DataMember="ProductName" DefaultId="DataItem1" />
+        <Measure DataMember="UnitPrice" DefaultId="DataItem2" />
+      </DataItems>
+      <HiddenDimensions>
+        <Dimension DefaultId="DataItem0" />
+      </HiddenDimensions>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Card>
+        <ActualValue DefaultId="DataItem2" />
+        <AbsoluteVariationNumericFormat />
+        <PercentVariationNumericFormat />
+        <PercentOfTargetNumericFormat />
+        <LayoutTemplate Type="Stretched">
+          <TopValue Visible="true" ValueType="ActualValue" DimensionIndex="0" />
+          <MainValue Visible="true" ValueType="Title" DimensionIndex="0" />
+          <SubValue Visible="true" ValueType="Subtitle" DimensionIndex="0" />
+          <BottomValue1 Visible="true" ValueType="PercentVariation" DimensionIndex="0" />
+          <BottomValue2 Visible="true" ValueType="AbsoluteVariation" DimensionIndex="0" />
+          <DeltaIndicator Visible="true" />
+          <Sparkline Visible="true" />
+        </LayoutTemplate>
+      </Card>
+    </Card>
+    <TabContainer ComponentName="tabContainerDashboardItem1" Name="Tab Container 1">
+      <Pages>
+        <Page ComponentName="dashboardTabPage1" Name="Page 1" />
+        <Page ComponentName="dashboardTabPage2" Name="Page 2" />
+      </Pages>
+    </TabContainer>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutTabContainer DashboardItem="tabContainerDashboardItem1">
+        <LayoutTabPage DashboardItem="dashboardTabPage1">
+          <LayoutItem DashboardItem="cardDashboardItem1" />
+        </LayoutTabPage>
+        <LayoutTabPage DashboardItem="dashboardTabPage2">
+          <LayoutItem DashboardItem="gridDashboardItem1" />
+        </LayoutTabPage>
+      </LayoutTabContainer>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>
