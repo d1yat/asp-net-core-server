@@ -85,6 +85,11 @@ public class Startup {
 
             // Requires CORS policies.
             endpoints.MapControllers().RequireCors("CorsPolicy");
+
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller}/{action}/{id?}",
+                defaults: new { controller = "Home", action = "Index" });
         });
     }
 }

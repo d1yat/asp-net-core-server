@@ -23,9 +23,9 @@ data.Add(new InvoiceItem { Country = "Germany", City = "Aachen", ProductName = "
 }
 
 public class InvoiceItem {
-    public string Country { get; set; }
-    public string City { get; set; }
-    public string ProductName { get; set; }
+    public string? Country { get; set; }
+    public string? City { get; set; }
+    public string? ProductName { get; set; }
     public DateTime OrderDate { get; set; }
     public int Quantity { get; set; }
     public double Discount { get; set; }

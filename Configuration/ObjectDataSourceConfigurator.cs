@@ -16,7 +16,7 @@ public class ObjectDataSourceConfigurator {
     }
     private static void DataLoading(object sender, DataLoadingWebEventArgs e) {
         if (e.DataId == "objectDataSource") {
-            e.Data = Invoices.CreateData();
+            e.Data = JsonResultClass.CreateDataAsync();
         }
     }
 }
