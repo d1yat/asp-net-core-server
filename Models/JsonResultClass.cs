@@ -8,9 +8,9 @@ public class JsonResultClass {
     public static List<DataItem> GetDataItems() {
         using (var httpClient = new HttpClient()) {
             string apiUrl = "https://bosbi.beonesolution.com/api";
-            string queryParams = "q_paging=10&q_category_id=1edad1e8-a187-6974-8a71-b38140175139&q_company=Bara Indah Sinergi&q_name=Sales&q_code=ds1edf2d44e6956fc883b8fa163e42aa00&q_type=All Company";
+            string queryParams = "";
 
-            var responseMessage = httpClient.PostAsync($"{apiUrl}/v1/datasource/?{queryParams}", null).Result;
+            var responseMessage = httpClient.PostAsync($"{apiUrl}/v1/datasource/", null).Result;
 
             List<DataItem> dataItems = new List<DataItem>();
 
@@ -39,10 +39,10 @@ public class JsonResultClass {
         }
     }
 
-    public static List<ItemDetails> GetItemDetails() {
+    public static List<ItemDetails> GetItemDetails(string? datasourceId) {
         using (var httpClient = new HttpClient()) {
             string apiUrl = "https://bosbi.beonesolution.com/api";
-            string queryParams = "1edf2cf3-59dc-6c40-a7b5-fa163e42aa00/show?company_id=1edc3415-71ce-68aa-87f5-fa163e42aa00";
+            string queryParams = $"{datasourceId}/show?company_id=1edc3415-71ce-68aa-87f5-fa163e42aa00";
 
             var responseMessage = httpClient.PostAsync($"{apiUrl}/v1/datasource/{queryParams}", null).Result;
 
