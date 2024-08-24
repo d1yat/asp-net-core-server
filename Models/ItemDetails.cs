@@ -1,7 +1,10 @@
+using System.Text.Json.Serialization;
+
 namespace AspNetCoreDashboardBackend.Models;
 
 public class ItemDetails {
-    public string? _id { get; set; }
+    [JsonPropertyName("_id")]
+    public string? Id { get; set; }
     public int CFTId { get; set; }
     public int CFWId { get; set; }
     public decimal Credit { get; set; }

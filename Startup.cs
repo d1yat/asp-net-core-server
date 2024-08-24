@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.IO;
 using AspNetCoreDashboardBackend.Configuration;
 
 namespace AspNetCoreDashboardBackend;
@@ -35,10 +36,15 @@ public class Startup {
         });
         services.AddMvc();
         services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) => {
+            string folderPath = "Data/Dashboards";
+            if (!Directory.Exists(folderPath)) {
+                Directory.CreateDirectory(folderPath);
+            }
+
             DashboardConfigurator configurator = new DashboardConfigurator();
 
             // Create and configure a dashboard storage.
-            DashboardFileStorage dashboardFileStorage = new DashboardFileStorage(FileProvider.GetFileInfo("Data/Dashboards").PhysicalPath);
+            DashboardFileStorage dashboardFileStorage = new DashboardFileStorage(FileProvider.GetFileInfo(folderPath).PhysicalPath);
             configurator.SetDashboardStorage(dashboardFileStorage);
 
             // Create and configure a data source storage.
