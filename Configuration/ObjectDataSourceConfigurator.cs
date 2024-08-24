@@ -20,7 +20,8 @@ public class ObjectDataSourceConfigurator {
     private static void DataLoading(object sender, DataLoadingWebEventArgs e) {
         string? id = e.DataId;
         if (!string.IsNullOrEmpty(id)) {
-            e.Data = JsonResultClass.GetItemDetails(datasourceId: id);
+            var itemDetailsList = JsonResultClass.GetItemDetails(datasourceId: id);
+            e.Data = itemDetailsList;
         }
     }
 }
